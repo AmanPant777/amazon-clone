@@ -58,3 +58,13 @@
 .header_basketCount {
   margin: 0 10px;
 }
+@media (max-width: 789px) {
+  .header_logo {
+    width: 90px;
+    margin: 0;
+    border-radius: 50px;
+  }
+  .header_nav {
+    width: 50%;
+  }
+}
