@@ -5,7 +5,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 const Header = () => {
     return (
         <div className="header">
-            <img src="/images/amazon.jpg" alt="heade logo" className="header_logo" />
+            <img src="/images/amazonlogo.png" alt="heade logo" className="header_logo" />
             <div className="header_search">
                 <input type="text" className="header_searchInput" />
                 <SearchIcon className='header_searchIcon' />
