@@ -22,13 +22,14 @@
 }
 .header_searchInput {
   height: 19px;
-  width: 100%;
+  width: 70%;
   border: none;
   padding: 5px;
   border-radius: 20px;
 }
 .header_nav {
   display: flex;
+  flex-direction: row;
 }
 .header_option {
   display: flex;

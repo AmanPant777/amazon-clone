@@ -15,7 +15,7 @@ const Header = () => {
                 <input type="text" className="header_searchInput" />
                 <SearchIcon className='header_searchIcon' />
             </div>
-            <div classNam e="header_nav">
+            <div className="header_nav">
                 <div className="header_option">
                     <span className="header_optionLineOne">Hello</span>
                     <span className="header_optionLineTwo">Sign In</span>
