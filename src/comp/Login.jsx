@@ -1,8 +1,19 @@
 import React, { useState } from 'react'
+import { auth } from '../firebase'
+import history from 'history'
+import { useHistory } from 'react-router-dom'
 import './Login.css'
 const Login = () => {
+    const history = useHistory()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const register = (e) => {
+        auth.createUserWithEmailAndPassword(email, password).then((auth) => {
+            if (auth) {
+                history.push('/')
+            }
+        }).catch(error => alert(error.message))
+    }
     return (
         <div className="login">
             <img src="/images/amazonlogo.png" alt="" className="login_logo" />
@@ -16,7 +27,7 @@ const Login = () => {
                     <button type='submit'>Sign In</button>
                 </form>
                 <p>Amazon.in: Online Shopping India - Buy mobiles, laptops, cameras, books, watches, apparel, shoes and e-Gift Cards.</p>
-                <button>Create Your Account</button>
+                <button onClick={(e) => register(e)}>Create Your Account</button>
             </div>
         </div>
     )
