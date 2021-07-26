@@ -28,7 +28,6 @@ const Header = () => {
                         <span className="header_optionLineTwo">{!user ? 'Sign In' : 'Sign Out'}</span>
                     </div>
                 </Link>
-
                 <div className="header_option">
                     <span className="header_optionLineOne">Returns</span>
                     <span className="header_optionLineTwo">& Orders</span>
@@ -41,7 +40,6 @@ const Header = () => {
                     <Link to='/checkout'>
                         <ShoppingBasketIcon />
                     </Link>
-
                     <span className='header_optionLineTwo header_basketCount'>{basket?.length}</span>
                 </div>
             </div>

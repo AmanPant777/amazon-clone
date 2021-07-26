@@ -3,7 +3,7 @@
   min-width: 100px;
   width: 100%;
   padding: 20px;
-  margin: 10px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -30,4 +30,7 @@
 }
 .product_rating {
   display: flex;
+}
+.product:hover {
+  background-color: rgb(189, 183, 183);
 }
