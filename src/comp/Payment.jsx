@@ -6,9 +6,12 @@ import './Payment.css'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import CurrencyFormat from 'react-currency-format'
 import { getBasketTotal } from '../context/reducer'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from './axios'
+import { useHistory } from 'react-router-dom'
 const Payment = () => {
     const [{ basket, user }, dispatch] = useStateValue()
+    const history = useHistory()
     const stripe = useStripe()
     const elements = useElements()
     const [error, setError] = useState(null)
@@ -16,12 +19,31 @@ const Payment = () => {
     const [disabled, setDisabled] = useState(true)
     const [clientSecret, setClientSecret] = useState(true)
     const [succeded, setSucceded] = useState(false)
-
-    const handleSubmit = (e) => {
-
+    useEffect(() => {
+        const getClientSecret = async () => {
+            const response = await axios({
+                method: 'POST',
+                url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+            })
+            setClientSecret(response.data.clientSecret)
+        }
+        getClientSecret();
+    }, [basket])
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        setProcessing(true)
+        const payload = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: { card: elements.getElement(CardElement) }
+        }).then(({ paymentIntent }) => {
+            setSucceded(true)
+            setError(null)
+            setProcessing(false)
+            history.replace('/orders')
+        })
     }
     const handleChange = (e) => {
-
+        setDisabled(e.empty);
+        setError(e.error ? e.error.message : '')
     }
     return (
         <div className="payment">
@@ -81,6 +103,7 @@ const Payment = () => {
                                     <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                                 </button>
                             </div>
+                            {error && <h4>{error}</h4>}
                         </form>
 
                     </div>
