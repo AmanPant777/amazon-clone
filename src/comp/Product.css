@@ -27,10 +27,41 @@
 .product_info {
   height: 100px;
   margin-bottom: 15px;
+  font-size: 20px;
 }
 .product_rating {
   display: flex;
 }
-.product:hover {
-  background-color: rgb(189, 183, 183);
+@media only screen and (min-width: 768px) {
+  .product_info {
+    font-size: 20px;
+  }
+  .product > img {
+    width: 100%;
+    max-height: 150px;
+    margin-bottom: 15px;
+    object-fit: contain;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .product_info {
+    font-size: 13px;
+  }
+  .product > img {
+    width: 100%;
+    max-height: 100px;
+    margin-bottom: 15px;
+    object-fit: contain;
+  }
+}
+@media only screen and (man-width: 480px) {
+  .product_info {
+    font-size: 11px;
+  }
+  .product > img {
+    width: 100%;
+    max-height: 80px;
+    margin-bottom: 15px;
+    object-fit: contain;
+  }
 }

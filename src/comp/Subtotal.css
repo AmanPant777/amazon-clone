@@ -22,3 +22,16 @@
   border-color: #a88734 #9c7e31 #846a29;
   color: black;
 }
+@media (max-width: 768px) {
+  .subtotal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+  }
+}
