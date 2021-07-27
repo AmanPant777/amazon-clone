@@ -9,6 +9,8 @@ import { getBasketTotal } from '../context/reducer'
 import { useState, useEffect } from 'react'
 import axios from './axios'
 import { useHistory } from 'react-router-dom'
+import { db } from '../firebase'
+import { TrainRounded } from '@material-ui/icons'
 const Payment = () => {
     const [{ basket, user }, dispatch] = useStateValue()
     const history = useHistory()
@@ -35,6 +37,11 @@ const Payment = () => {
         const payload = await stripe.confirmCardPayment(clientSecret, {
             payment_method: { card: elements.getElement(CardElement) }
         }).then(({ paymentIntent }) => {
+            db.collection('users').doc(user?.uid).collection('orders').doc(paymentIntent.id).set({
+                basket: basket,
+                amount: paymentIntent.amount,
+                created: paymentIntent.created
+            })
             setSucceded(true)
             setError(null)
             setProcessing(false)
