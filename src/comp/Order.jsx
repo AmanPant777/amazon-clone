@@ -17,7 +17,8 @@ const Order = ({ order }) => {
                     title={item.title}
                     price={item.price}
                     image={item.image}
-                    rating={item.rating} />
+                    rating={item.rating}
+                    hidebutton />
             ))}
             <CurrencyFormat
                 renderText={(value) => {

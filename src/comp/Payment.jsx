@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 import axios from './axios'
 import { useHistory } from 'react-router-dom'
 import { db } from '../firebase'
-import { TrainRounded } from '@material-ui/icons'
+
 const Payment = () => {
     const [{ basket, user }, dispatch] = useStateValue()
     const history = useHistory()
@@ -24,7 +24,7 @@ const Payment = () => {
     useEffect(() => {
         const getClientSecret = async () => {
             const response = await axios({
-                method: 'POST',
+                method: 'post',
                 url: `/payments/create?total=${getBasketTotal(basket) * 100}`
             })
             setClientSecret(response.data.clientSecret)
